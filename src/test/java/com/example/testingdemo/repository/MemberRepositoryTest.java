@@ -1,19 +1,19 @@
 package com.example.testingdemo.repository;
 
 import com.example.testingdemo.entity.Member;
-import org.junit.After;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class MemberRepositoryTest {
     @Autowired
@@ -22,13 +22,13 @@ public class MemberRepositoryTest {
     @Autowired
     private MemberRepository memberRepository;
 
-    @After
+    @AfterEach
     public void tearDown() throws Exception {
         memberRepository.deleteAll();
     }
 
     @Test
-    public void testFindByName() {
+    public void testFindByName() throws InterruptedException {
         //Arrange
         Member member = new Member();
         member.setName("Cherprang");

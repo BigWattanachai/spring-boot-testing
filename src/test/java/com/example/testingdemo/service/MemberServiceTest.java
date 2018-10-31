@@ -3,11 +3,11 @@ package com.example.testingdemo.service;
 
 import com.example.testingdemo.entity.Member;
 import com.example.testingdemo.repository.MemberRepository;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.AdditionalAnswers.returnsFirstArg;
@@ -15,7 +15,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(SpringExtension.class)
 public class MemberServiceTest {
 
     private MemberService memberService;
@@ -23,7 +23,7 @@ public class MemberServiceTest {
     @Mock
     private MemberRepository memberRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         memberService = new MemberService(memberRepository);
     }
